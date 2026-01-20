@@ -1,0 +1,45 @@
+{
+  "name": "feedback-insights-dashboard",
+  "version": "1.0.0",
+  "description": "AI-powered feedback aggregation dashboard for Cloudflare PM Intern Assignment",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && wrangler deploy",
+    "worker:dev": "wrangler dev",
+    "worker:deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create feedback-db",
+    "db:migrate": "wrangler d1 execute feedback-db --file=./schema.sql",
+    "db:query": "wrangler d1 execute feedback-db --command",
+    "kv:create": "wrangler kv:namespace create DEPLOYMENTS_KV",
+    "test": "vitest"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "d1",
+    "workers-ai",
+    "feedback",
+    "dashboard"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240129.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.0.8",
+    "vitest": "^1.2.0",
+    "wrangler": "^3.78.0"
+  },
+  "dependencies": {
+    "lucide-react": "^0.562.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "recharts": "^3.6.0"
+  }
+}

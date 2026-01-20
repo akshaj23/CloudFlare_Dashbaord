@@ -1,0 +1,48 @@
+# Cloudflare Workers Configuration
+# Feedback Insights Dashboard
+
+name = "feedback-insights-dashboard"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+assets = { directory = "dist" }
+
+# Worker configuration
+workers_dev = true
+route = ""
+account_id = "" # Add your Cloudflare account ID
+
+# D1 Database Binding
+# Stores all feedback data
+[[d1_databases]]
+binding = "DB"
+database_name = "feedback-db"
+database_id = "f1bdea61-5125-47be-90e2-a6f4104096be" # Will be created with: wrangler d1 create feedback-db
+
+# KV Namespace Binding  
+# Caches deployment data and aggregated analytics
+[[kv_namespaces]]
+binding = "DEPLOYMENTS_KV"
+id = "9b702318bd144affa120c3cac89546a3" # Will be created with: wrangler kv:namespace create "DEPLOYMENTS_KV"
+
+# Workers AI Binding
+# Powers sentiment analysis and keyword extraction
+[ai]
+binding = "AI"
+
+# Environment Variables
+[vars]
+ENVIRONMENT = "production"
+
+# Build configuration
+[build]
+command = ""
+
+# Development configuration
+[dev]
+port = 8787
+ip = "127.0.0.1"
+
+# Routes (for production)
+# [[routes]]
+# pattern = "feedback-insights.yourdomain.com/*"
+# zone_name = "yourdomain.com"
